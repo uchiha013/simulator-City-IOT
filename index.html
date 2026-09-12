@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b6570" />
+  <title>Smart City Indonesia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#beranda" aria-label="Smart City Indonesia, beranda"><span>SC</span><strong>SMART CITY<br>INDONESIA</strong></a>
+    <nav aria-label="Navigasi utama"><a href="#beranda">Beranda</a><a href="#misi">Misi</a><a href="#lab" id="algorithmNav">Ruang Algoritma</a><a href="#policy">Kebijakan</a><button class="nav-glossary" id="howToBtn">Cara bermain</button><button class="nav-glossary" id="glossaryBtn">Glosarium</button><button class="icon-button" id="settingsBtn" aria-label="Pengaturan">⚙</button></nav>
+    <div class="top-stats"><span>★ <b id="xpTop">0</b> XP</span><span>Rp <b id="budgetTop">100</b> jt</span><span class="local">● Lokal</span></div>
+  </header>
+
+  <main id="beranda">
+    <section class="hero">
+      <div><p class="eyebrow">SIMULATOR PEMBELAJARAN KKA · SMA</p><h1>Kelola kota dengan<br><em>data, bukan tebakan.</em></h1><p class="lead">Pilih wilayah, pahami masalahnya, lalu bangun solusi teknologi yang bertanggung jawab.</p></div>
+      <div class="player-card"><span class="avatar">●</span><div><small>PEMAIN LOKAL</small><strong id="playerDisplay">Smart City Engineer</strong><button id="nameBtn">Ubah nama</button></div><span class="save">✓ Tersimpan</span></div>
+    </section>
+
+    <section class="dashboard" aria-label="Indikator kota">
+      <article><span>🌱</span><div><small>LINGKUNGAN</small><b id="environmentMetric">78%</b><i><em id="environmentBar" style="width:78%"></em></i></div></article>
+      <article><span>⚡</span><div><small>ENERGI</small><b id="energyMetric">71%</b><i><em id="energyBar" style="width:71%"></em></i></div></article>
+      <article><span>🚦</span><div><small>TRANSPORTASI</small><b id="trafficMetric">63%</b><i><em id="trafficBar" style="width:63%"></em></i></div></article>
+      <article><span>☺</span><div><small>KEPUASAN WARGA</small><b id="happinessMetric">74%</b><i><em id="happinessBar" style="width:74%"></em></i></div></article>
+    </section>
+    <section class="period-strip glass-card" aria-label="Siklus simulasi"><div><span class="eyebrow">SIKLUS SIMULASI</span><strong>Periode <b id="periodValue">1</b> · Operasi Nusantara</strong><small>Setiap periode dapat membawa peluang atau krisis baru.</small></div><button class="secondary" id="nextPeriodBtn">Lanjut periode →</button></section>
+
+    <section class="game-grid" id="misi">
+      <div class="map-panel panel">
+        <div class="section-head"><div><p class="eyebrow">PETA MISI</p><h2>Nusantara Smart City</h2></div><span class="legend"><i></i> tersedia <i class="done"></i> selesai</span></div>
+        <div class="map-wrap" aria-label="Peta navigasi wilayah Indonesia">
+          <svg viewBox="0 0 1000 420" role="img" aria-label="Peta Indonesia berdasarkan data batas provinsi, klik wilayah untuk memilih misi" id="indonesiaMap"><title>Peta wilayah Indonesia</title><g id="mapPaths"></g></svg>
+          <p class="map-note">Batas peta: dataset provinsi BAKOSURTANAL (GeoJSON), disederhanakan sebagai navigasi wilayah. Angka misi merupakan data simulasi.</p>
+        </div>
+      </div>
+      <aside class="mission-panel panel" aria-live="polite">
+        <p class="eyebrow" id="regionStatus">WILAYAH TERPILIH</p><h2 id="regionName">Pilih wilayah pada peta</h2><div class="problem"><span id="regionIcon">⌁</span><div><small>MASALAH KOTA</small><strong id="regionProblem">Mulai dari data untuk menentukan prioritas kota.</strong></div></div>
+        <p id="regionMission">Pilih salah satu wilayah yang tersedia untuk membuka rincian misi.</p>
+        <dl><div><dt>Kesulitan</dt><dd id="difficulty">—</dd></div><div><dt>Estimasi</dt><dd id="estimate">—</dd></div></dl>
+        <button class="primary full" id="startMission" disabled>Mulai analisis →</button>
+      </aside>
+    </section>
+    <section class="strategy-grid" id="policy">
+      <article class="policy-card glass-card"><p class="eyebrow">KEBIJAKAN NASIONAL</p><h2>Regulasi untuk seluruh kota</h2><p>Kebijakan berlaku sekali dan memengaruhi indikator simulasi secara global.</p><div id="policyChoices"></div></article>
+      <article class="achievement-card glass-card"><p class="eyebrow">PENCAPAIAN</p><h2>Lencana Engineer</h2><div id="achievementList"></div></article>
+    </section>
+
+    <section class="mission-work panel hidden" id="missionWork" aria-live="polite">
+      <div class="work-header"><div><p class="eyebrow">MIS I / <span id="workRegion"></span></p><h2 id="workTitle"></h2></div><button class="text-button" id="closeMission">Tutup ×</button></div>
+      <div class="steps" role="tablist"><button class="active" data-step="problem">1 Masalah</button><button data-step="data">2 Data</button><button data-step="solution">3 Solusi</button><button data-step="algorithm">4 Algoritma</button><button data-step="result">5 Hasil</button></div>
+      <div class="step-view" id="stepProblem"><h3>Masalah kota</h3><p id="workObjective"></p><p class="hint">Gunakan tombol tahap di atas untuk menelusuri proses berpikir: masalah → data → solusi → algoritma → hasil.</p></div>
+      <div class="step-view hidden" id="stepData"><h3>Data yang perlu dibaca</h3><p id="chartExplanation" class="chart-explanation"></p><div class="chart" id="chart" aria-label="Visualisasi data misi"></div><div class="data-table" id="dataTable"></div></div>
+      <div class="step-view hidden" id="stepSolution"><div class="decision"><h3>Pilih teknologi</h3><div id="technologyChoices"></div><p class="hint">Bandingkan manfaat, keterbatasan, dan biaya sebelum memilih. Teknologi yang paling mahal belum tentu paling sesuai.</p><button class="primary" id="continueToChallenge" disabled>Lanjut ke tantangan →</button></div></div>
+      <div class="step-view hidden" id="stepAlgorithm"><h3>Siapkan algoritma</h3><p>Setelah memilih teknologi, buka Ruang Algoritma untuk menjalankan kondisi atau prediksi berdasarkan data misi.</p><button class="primary" id="openChallenge">Buka Ruang Algoritma →</button></div>
+      <div class="step-view hidden" id="stepResult"><h3>Hasil simulasi</h3><div id="resultSummary" class="feedback">Selesaikan Lab KKA untuk melihat dampak keputusan terhadap kota.</div></div>
+    </section>
+
+    <section class="lab panel hidden" id="lab">
+      <div class="work-header"><div><p class="eyebrow">RUANG ALGORITMA & AI</p><h2 id="challengeTitle">Tantangan algoritma</h2></div><span class="score-pill" id="challengeScore">+0 XP</span></div>
+      <div class="challenge-card"><p id="challengeIntro"></p><pre id="codeBlock"></pre><div id="answerChoices" class="answer-choices"></div><button class="primary" id="runChallenge" disabled>▶ Jalankan simulasi</button><button class="text-button hidden" id="hideLab">Sembunyikan ruang ini</button><div class="simulation-loader hidden" id="simulationLoader"><span></span><div><b>Menjalankan simulasi kota…</b><small>Menghitung dampak teknologi terhadap indikator kota</small><i class="loading-track"><em></em></i></div></div></div>
+    </section>
+
+    <section class="final-card panel hidden" id="finalReport"><p class="eyebrow">LAPORAN SESI</p><h2>Kota siap dievaluasi</h2><div class="report-grid" id="reportGrid"></div><p id="reportMessage"></p><button class="primary" onclick="window.print()">Cetak hasil</button></section>
+  </main>
+  <dialog id="settings"><form method="dialog"><div class="work-header"><h2>Pengaturan lokal</h2><button class="text-button">Tutup ×</button></div><label>Nama panggilan<input id="nameInput" maxlength="30" placeholder="Smart City Engineer"></label><div class="dialog-actions"><button class="secondary" id="exportBtn" type="button">Export progress</button><label class="file-label">Import progress<input id="importInput" type="file" accept="application/json"></label></div><div class="dialog-actions"><button class="danger" id="resetBtn" type="button">Reset progress</button><button class="primary" id="saveName" value="default">Simpan</button></div><p class="hint">Progress hanya disimpan di browser perangkat ini.</p></form></dialog>
+  <dialog id="glossary"><form method="dialog"><div class="work-header"><div><p class="eyebrow">GLOSARIUM SMART CITY</p><h2>Istilah yang dipakai di simulasi</h2></div><button class="text-button">Tutup ×</button></div><div class="glossary-grid"><article><b>IoT Grid</b><p>Jaringan sensor yang mengirim data fasilitas kota secara real-time.</p></article><article><b>Smart Microgrid</b><p>Distribusi energi lokal yang membantu mengoptimalkan energi terbarukan.</p></article><article><b>E-Government</b><p>Layanan pemerintah elektronik untuk transparansi dan efisiensi.</p></article><article><b>Waste-to-Energy</b><p>Pengolahan sampah untuk menghasilkan energi listrik.</p></article></div></form></dialog>
+  <dialog id="howTo"><form method="dialog"><div class="work-header"><div><p class="eyebrow">PANDUAN SINGKAT</p><h2>Cara bermain</h2></div><button class="text-button">Tutup ×</button></div><ol class="how-to-list"><li><b>Pilih wilayah</b><span>Klik wilayah tersedia pada peta untuk melihat masalah kota.</span></li><li><b>Baca data</b><span>Buka tahap Data, cari angka tertinggi atau pola yang penting.</span></li><li><b>Bandingkan solusi</b><span>Pilih teknologi berdasarkan manfaat, biaya, dan kecocokannya.</span></li><li><b>Tulis logika</b><span>Di Ruang Algoritma, jawab tantangan kondisi atau prediksi AI.</span></li><li><b>Evaluasi dampak</b><span>Lihat perubahan status kota, XP, dan anggaran sebelum lanjut periode.</span></li></ol></form></dialog>
+  <dialog id="eventDialog" class="event-dialog"><div><p class="eyebrow">EVENT DINAMIS · PERIODE <span id="eventPeriod">1</span></p><h2 id="eventTitle">Event kota</h2><p id="eventImpact"></p><p class="event-question">Pilih respons yang akan dijalankan oleh tim kota.</p><div class="event-options"><button id="eventOptionA"></button><button id="eventOptionB"></button></div><button class="text-button" id="skipEventBtn">Lewati respons</button></div></dialog>
+  <div class="map-tooltip hidden" id="mapTooltip"></div>
+  <div class="toast hidden" id="toast" role="status"></div>
+  <script src="assets/indonesia-provinces.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
